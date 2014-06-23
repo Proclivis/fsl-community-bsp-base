@@ -154,7 +154,11 @@ EOF
     sed -e "s,MACHINE ??=.*,MACHINE ??= '$MACHINE',g" \
         -e "s,SDKMACHINE ??=.*,SDKMACHINE ??= '$SDKMACHINE',g" \
         -e "s,DISTRO ?=.*,DISTRO ?= '$DISTRO',g" \
+        -e "s,EXTRA_IMAGE_FEATURES ?=.*,EXTRA_IMAGE_FEATURES ?= \"debug-tweaks tools-debug\",g" \
         -i conf/local.conf
+
+    echo "IMAGE_INSTALL_append = \" tcf-agent\"" >> conf/local.conf
+    echo "IMAGE_INSTALL_append = \" i2c-tools\"" >> conf/local.conf
 
     cp $TEMPLATES/* conf/
 
